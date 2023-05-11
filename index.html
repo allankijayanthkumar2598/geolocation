@@ -1,0 +1,865 @@
+<html>
+    <head>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+        <!-- Option 1: Include in HTML -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">   
+        <title>Grocery Mart</title>
+        <link href="photos new/gorcery logo.jpg" rel="icon"/>
+        
+        <link href="home1.css" rel="stylesheet">
+        <script  src="coupon.js"></script>
+        <!-- <script src="location.js"></script> -->
+
+    </head> 
+    
+    <body>
+    <div id="home">
+
+        <header id="header">
+        
+         <div id="welcome">  
+            Welcome !<br>Grocery Mart  
+         </div> 
+         <div class="mode">
+            <i class="bi bi-star" id="toggleDark"></i> 
+            <!-- <img src="photos new/moon.png" alt="moon" id="toggle"/> -->
+            <!-- <button type="button" class="btn btn-default btn-sm"> -->
+                <!-- <span class="glyphicon glyphicon-star-empty" id="toggletheme"></span>  -->
+              <!-- </button> -->
+                
+         <script>
+                
+                    let toggle=document.getElementById('toggleDark');
+                   let body=document.querySelector('body');
+                   toggle.addEventListener('click', function(){
+                    this.classList.toggle('bi-moon');
+                    if(this.classList.toggle('bi-star')){
+                        body.style.backgroundColor="bisque";
+                        body.style.color="black";
+                        body.style.transition="1s";
+
+                    }
+                    else{
+
+                        body.style.backgroundColor="black";
+                        body.style.color="bisque";
+                        body.style.transition="1s";
+                    }
+                   })
+                
+            </script> 
+           
+         </div> 
+
+
+         <div class="dropdown">
+            <select>
+                <option>--Shop By Category--</option>
+                <option>--Fruits & Vegetables--</option>
+                <option>--Daily Staples--</option>
+                <option>--Beverages--</option>
+                <option>--Snack Store--</option>
+                <option>--Home & Kitchen Essentials--</option>
+                <option>--Cleaning & Beauty Products--</option>
+            </select>
+            <!-- <select id="select1">
+                 <option>--Location--</option>
+                <option>--Hyderabad--</option>
+                <option>--Chennai--</option>
+                <option>--Bangalore--</option>
+                <option>--Delhi--</option> 
+            </select> -->
+         </div>
+         
+          <div id="geolocation">
+            <span class="glyphicon glyphicon-map-marker">
+                <p id="MyCity"></p>
+            </span>
+           
+                <p id="MyWeather"></p> 
+    
+            
+           </div>
+           <script>
+                window.onload=geolocation()
+                let x = document.getElementById('MyCity');
+               let y = document.getElementById('MyWeather');
+               function geolocation(){
+                   if(navigator.geolocation){
+                       navigator.geolocation.getCurrentPosition(showPosition)
+                   }else{
+                       x.innerText="Geo Not Supported"
+                   }
+               }
+   
+               function showPosition(data){
+                   console.log(data)
+                   let lat = data.coords.latitude
+                   let lon = data.coords.longitude
+                   const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29`;
+                   fetch(url,{method: 'GET'})
+                   .then((res) =>res.json())
+                   .then((data) => {
+                       console.log(data)
+                       let cityName = data.city.name;
+                       let temp = data.list[0].temp.day+" °C"
+                       y.innerText =`${cityName}  ${temp}`
+                   })
+               }
+               </script>
+
+         <div id="buttons">
+            <input type="button" class="button" value="Login"> 
+            <input type="button" class="button" value="Sign Up">
+         </div>  
+         <div id="ab2">
+         <a  class="mycart" href="">
+            <img src="https://i.ibb.co/m6kWvpN/basket.png" alt="basket" id="basket">
+            <h3 class="mc" >My<br> Cart</h3>
+ 
+        </a>
+            
+         </div>
+
+        </header>
+
+        <!---------------BLOCK 1------------------------>
+        <div id="block1">
+            <div id="ayurveda">
+                <a class="ab" href="ayurveda.html" rel="ayurveda">
+                <h3 class="heading">AYURVEDA</h3>
+            </a>
+            </div>
+            <div id="buysavings">
+                <a class="ab" href="">
+                <h3 class="heading">BUY SAVINGS</h3>
+            </a>
+                
+            </div>
+            <div id="flashsales">
+                <a class="ab" href="">
+                <h3 class="heading">FLASH SALES</h3>
+            </a>
+            </div>
+            <div id="combostore">
+                <a class="ab" href="">
+                <h3 class="heading">COMBO STORE</h3>
+            </a>
+            </div>
+            <div id="brands">
+             <a class="ab" href="">
+                <h3 class="heading">BRANDS</h3>
+            </a>
+            </div>
+
+        </div>
+        <!--------------BLOCK 2--------------------------->
+        <div id="block2">
+                <div id="offers">
+                    <img src="photos new/offer.png" alt="under" class="image"/>
+                </div>
+                <div id="delivery">
+                    <img src="photos new/fast.jpg" alt="under" class="image"/>
+                </div>
+                <div id="under">
+                    <img src="photos new/under99.jpg" alt="under" class="image"/>
+                </div>
+                
+            </div>
+        <!-- </div> -->
+        <!---------------BLOCK 3--------------------------->
+        <div id="block3">
+            <h2 class="ds">Fruits & Vegetables</h2>
+            <!-- categories -->
+        
+             <div class="title1">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/HP9F32y/organic-1.jpg" alt="rice"/>
+
+                </div>
+
+                <div class="titlecomponent2">
+
+                 <div class="compheading">
+                    <a href=" ">Organic Vegetables</a>
+                 </div>
+
+                 <div class="compsubheading">
+                    UP TO 10% OFF
+                 </div>
+
+                </div>
+            
+             </div>
+
+             <div class="title1">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/VHHYMKN/freshfruits2.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Fresh Fruits</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+            
+            </div>
+
+             <div class="title1">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/Rh6NJvy/vegetables.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Fresh Vegetables</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+            
+            </div>
+        
+            <div class="title1">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/R9525Rk/sprouts.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Cuts & Sprouts</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+            
+            </div>
+
+             <div class="title1">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/tBnfd1y/exotic.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Exotic Fruits</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+            
+            </div>
+
+             <div class="title1">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/S6SrCwd/herbs-spices.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Herbs & Spices</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 20% OFF
+                 </div>
+                </div> 
+            
+            </div>
+        </div>
+
+        <!----------------BLOCK 4-------------------------->
+        <div id="block4">
+            <h2 class="ds">Daily Staples</h2>
+            <div class="title2">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/QHSnQJh/atta-and-flour.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Atta & Flour</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+                <!-- class fv1 in block 2 -->
+            </div>
+
+            <div class="title2">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/pzPtx8f/rice.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Rice &Rice Products</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+
+            <div class="title2">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/BzZVKg8/dal-pulses.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Dal & Pulses</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 10% OFF
+                 </div>
+                </div>
+                
+            </div>
+
+            <div class="title2">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/MBvny6h/oil.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Cooking Oils & Ghee</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+    
+            </div>
+
+            <div class="title2">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/pXg0Bv4/dry-fruits.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Dry Fruits</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+
+            <div class="title2">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/c3C1VRC/salt.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Salt Sugar & Jaggery</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!----------block 5------------------------>
+        <div id="block5">
+
+            <h2 class="ds">Beverages</h2>
+            <div class="title3">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/Fqdpk7P/drinks.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Health Drinks</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+                <!-- class fv1 in block 2 -->
+            </div>
+            <div class="title3">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/p0DzBhQ/tea.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Tea &Coffee</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 18% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title3">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/wyR9SLY/soya-milk.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Flavoured &Soya Milk</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title3">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/ftXv50p/indalgence.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Fruity Indulgence</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 12% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title3">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/CPRvxRr/power.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Power Boosters</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 10% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title3">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/C2WR0Jj/cooldrinks.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Crick-it,Drink-it</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+        </div>
+       <!------------- block 6 ------------------>
+        <div id="block6">
+
+            <h2 class="ds">Snack Store</h2>
+            <div class="title4">
+                <div class="titlecomponent1">
+                    <img src="https://i.ibb.co/K57jkPG/biscuits.jpg" alt="atta"/>
+                </div>
+
+                <div class="titlecomponent2">
+                    <div class="compheading">
+                        <a href=" ">Biscuits & Cakes</a>
+                    </div>
+                    <div class="compsubheading">
+                        UP TO 15% OFF
+                    </div>
+                </div>
+                
+                <!-- class fv1 in block 2 -->
+            </div>
+            <div class="title4">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/StPMwxj/chips.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Crispy Chips</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 20% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title4">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/3vCM0tn/chocolate.jpg" alt="dal"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Chocolate</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 25% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title4">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/8xv7jXM/morning.jpg" alt="oil"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Morning Starters</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 30% OFF
+                 </div>
+                </div>
+                
+            </div>
+           
+        </div>
+        <!-- </div> -->
+        <!--------------block 7--------------------->
+        <div id="block7">
+
+            <h2 class="ds">Home & Kitchen Essentials</h2>
+
+            <div class="title5">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/st9s37G/cooker.jpg" alt="atta"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Pressure Cooker</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 10% OFF
+                 </div>
+                </div>
+            
+                <!-- class fv1 in block 2 -->
+            </div>
+            <div class="title5">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/TmDRVnx/stove.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Gas Stove</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title5">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/2kZb8s8/tools.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Kitchen Tools</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title5">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/4sGNFkm/bulbs.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Batteries & Bulbs</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 12% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title5">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/jvR4JGr/glassware.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Glassware</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 10% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title5">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/znM8JFh/towel.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Towels & Soaps</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 18% OFF
+                 </div>
+                </div>
+                
+            </div>
+        </div>
+       <!----------------Block 8------------------------>
+        <div id="block8">
+
+            <h2 class="ds">Cleaning & Beauty Products</h2>
+            
+            <div class="title6">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/qgY8cwc/cleaning.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Detergents & Cleaners</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 20% OFF
+                 </div>
+                </div>
+                
+                <!-- class fv1 in block 2 -->
+            </div>
+            <div class="title6">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/GTPHN0g/bags.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Garbage Bags</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title6">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/WWh59MY/lotion.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Summer Lotions,Serum</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+            
+            </div>
+            <div class="title6">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/9s8wNtf/perfumes.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Scentful Perfumes</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title6">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/8BKcNpZ/shaving.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Shaving Saviours</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+            <div class="title6">
+                <div class="titlecomponent1">
+                    
+                    <img src="https://i.ibb.co/8rMq2VW/makeup.jpg" alt="rice"/>
+
+                </div>
+                <div class="titlecomponent2">
+                 <div class="compheading">
+                    <a href=" ">Makeup Splash</a>
+                 </div>
+                 <div class="compsubheading">
+                    UP TO 15% OFF
+                 </div>
+                </div>
+                
+            </div>
+        </div>
+         
+        <footer>
+            <h2 id="headingfooter">India's Biggest Online Store :</h2>
+         <div>
+                <p><span><b>Grocery Mart</b></span> believes in providing the highest level of customer service and is continuously innovating to meet customer expectations. Our On-time Guarantee is one such assurance where we refund 10% of the bill value if the delivery is delayed. For all your order values above Rs. 1000, we provide free delivery. A wide range of imported and gourmet products are available through our express delivery and slotted delivery service. If you ever find an item missing on delivery or want to return a product, you can report it to us within 48 hours for a ‘no-questions-asked’ refund.</p>
+         </div>
+         
+        
+         <div id="about1">
+            <a class="about" href="">About Us</a>
+            <a class="about1" href="#header">Back to top</a>
+        </div>
+        
+
+        <details>
+            <summary>Read More</summary>
+            <p><span><b>Grocery Mart</b></span> is synonymous with superior quality and continues to strive for higher levels of customer trust and confidence, by taking feedback and giving our customers what they want. We have added the convenience of pre-cut fruits in our Fresho range. If it’s a product category you’re looking to shop from, we’ve made it convenient for you to access all products in a section easily. For instance, if you’re looking for beverages, you can order from a long list of beverages that include cool drinks, hot teas, fruit juices and more.</p>
+         </details>
+    
+        </footer>
+    </div>
+
+    <div id="coupon">
+        
+        <div id="slider">
+            
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  
+                     <!-- Wrapper for slides  -->
+                    <div class="carousel-inner">
+                      
+                      <div class="item active">
+                    <a href="">
+                        <img src="photos new/store.webp" alt="Chicago">
+                    </a>
+                        
+                      </div>
+                  
+                      <div class="item">
+                        <a href="">
+                        <img src="photos new/store 1.jpg" alt="New York">
+                    </a>
+                        
+                      </div>
+    
+                      <div class="item">
+                        <a href="">
+                        <img src="photos new/sale.webp" alt="coupon">
+                    </a>
+                      </div>
+                    </div>
+                  
+                     <!-- Left and right controls   -->
+                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div> 
+                 
+                </div> 
+
+                <button onclick="closeCoupon()">Cancel</button> 
+                  
+    </div> 
+
+    <script>
+        window.onload=loadCoupon()
+
+    </script>
+
+
+    <div id="coupon1">
+        <a href="">
+            <h5 class="hh"><b>LOGIN TO ACCESS DEALS AND OFFERS</b></h5>
+         <img src="photos new/best products.jpg" alt="best"/>
+        </a>
+        
+    
+
+        <button onClick="cancel()" class="cancel">Cancel</button>
+    </div>
+
+    <!-- <script>
+        window.onload=geolocation()
+    </script> -->
+        
+    <script>
+        window.onload=load()
+    </script>
+ 
+    </body>
+</html>
